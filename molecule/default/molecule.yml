@@ -7,7 +7,7 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    image: debian:10
+    image: ${MOLECULE_IMAGE-debian:10}
     exposed_ports:
       - 80/tcp
     published_ports:
@@ -18,5 +18,7 @@ provisioner:
     name: ansible-lint
 verifier:
   name: testinfra
+  options:
+    verbose: true
   lint:
     name: flake8
